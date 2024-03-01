@@ -10,12 +10,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import eus.dam.birt.domain.Libro;
 import eus.dam.birt.repository.LibroRepository;
+import eus.dam.birt.repository.BibliotecaRepository;
 
 @Controller
 public class LibroController {
 	
 	@Autowired
 	private LibroRepository libroRepository;
+	@Autowired
+	private BibliotecaRepository bibliotecaRepository;
 	
 	@GetMapping("/libros")
 	public String getLibros(Model model) {
@@ -45,6 +48,7 @@ public class LibroController {
 	@GetMapping ("libros/delete/{id}")
 	public String initDelete(@PathVariable ("id") int id) {
 		libroRepository.deleteById(id);
+		bibliotecaRepository.deleteById(id);
 		return "redirect:/libros";
 		
 	}
