@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Crear libro</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<form method="post" action="#"th:action="@{/libros/new/submit}" th:object="${libro}">
+<h1>
+	<span th:text="${id} ? 'Edit' : 'New'"></span>Libro
+</h1>
+  <input type="hidden" th:field="*{id}" id="id"/>
+  <div class="form-group">
+	<label for="isbnInput">ISBN</label>
+	<input class="form-control" type="text"	placeholder="Introduce el ISBN" th:field="*{isbn}"></input>
+  </div>				
+   <div class="form-group">
+    	<label for="tituloInput">Titulo</label>
+    	<input class="form-control" type="text" placeholder="Introduce el título" th:field="*{titulo}">
+  </div>
+  <div class="form-group">
+    	<label for="autorInput">Autor</label>
+    	<input class="form-control" type="text" placeholder="Introduce el autor" th:field="*{autor}">
+  </div>
+	<div class="form-group">
+    	<label for="anioEdicionInput">Año Edicion</label>
+    	<input class="form-control" type="text" placeholder="Introduce el año de Edición" th:field="*{anioEdicion}">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Send</button>
+</form>
+
+<div th:replace="fragments/footer :: footer"></div>
+<br/>  
+</body>
+</html>

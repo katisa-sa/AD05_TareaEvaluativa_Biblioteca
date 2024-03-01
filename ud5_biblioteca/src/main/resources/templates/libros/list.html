@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link th:href="@{bootstrap.min.css}" rel="stylesheet"/>
+<style type="text/css">
+	h1{color:#5F9EA0; font-size:27px;}
+</style>
+</head>
+<body>
+<div th:replace="fragments/header::header"></div>
+<h2>Libro List</h2>
+<table>
+	<tr>
+		<th>Id</th>
+		<th>ISBN</th>
+		<th>Titulo</th>
+		<th>Autor</th>
+		<th>Año Edición</th>
+	</tr>
+	<tr th:each="libro : ${libros}">
+		<td th:text="${libro.id}"></td>
+		<td th:text="${libro.isbn}"></td>
+		<td th:text="${libro.titulo}"></td>
+		<td th:text="${libro.autor}"></td>
+		<td th:text="${libro.anioEdicion}"></td>
+		<td class="actions">
+			<a th:href="@{/libros/edit/{id}(id=${libro.id})}" class="btn btn-primary">Edit</a>   				
+			<a th:href="@{/libros/delete/{id}(id=${libro.id})}" class="btn btn-danger">Delete</a>  
+		</td>
+	</tr>	
+</table>
+<a th:href="@{/libros/new}">Add new</a>
+<div th:replace="fragments/footer ::footer"></div>
+</body>
+</html>
